@@ -1,0 +1,22 @@
+-
+  type: knock_knock
+  name: cashew
+  joke:
+    set_up: cash
+    punchline: No thanks, but I would like a peanut instead
+-
+  type: one_liner,
+  name: shitzu,
+  joke: I went to the zoo the other day, there was only one dog in it, it was a shitzu.
+-
+  type: normal
+  name: door
+  joke:
+    set_up: When is a door not a door?
+    punchline: When it's ajar.
+-
+  type: normal
+  name: pumpkin
+  joke:
+    set_up: What do you get if you divide the circumference of a pumpkin by its diameter?
+    punchline: Pumpkin Pi
