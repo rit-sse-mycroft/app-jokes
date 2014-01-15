@@ -2,12 +2,12 @@ require 'mycroft'
 
 class Jokes < Mycroft::Client
 
-  attr_accssor :verified
+  attr_accessor :verified
 
   def initialize
     @key = '/path/to/key'
     @cert = '/path/to/cert'
-    @manifest = './jokes.json'
+    @manifest = './app.json'
     @verified = false
   end
 
