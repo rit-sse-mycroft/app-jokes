@@ -27,6 +27,7 @@ class Jokes < Mycroft::Client
       @verified = true
     elsif parsed[:type] == 'MSG_BROADCAST'
       if (parsed[:data]["content"]["text"].index("joke") != nil)
+        set_current_joke
       end
       #do stuff here
     elsif parsed[:type] == 'APP_DEPENDENCY'
@@ -47,7 +48,10 @@ class Jokes < Mycroft::Client
   end
 
   def tell_joke
-
+    until(@cur_joke.empty?)
+      action_block = @cur_joke.shift
+      send(action_block[0].to_sym, action_block[1])
+    end
   end
 end
 
