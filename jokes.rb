@@ -13,7 +13,7 @@ class Jokes < Mycroft::Client
     @verified = false
     @jokes = YAML.load_file('./jokes.yml').shuffle
     @jokes_used = Array.new
-    @cur_joke = nil
+    @cur_joke = []
   end
 
   def connect
@@ -27,11 +27,12 @@ class Jokes < Mycroft::Client
       check_manifest(parsed)
       @verified = true
     elsif parsed[:type] == 'MSG_BROADCAST'
-      if (parsed[:data]["content"]["text"].index("joke") != nil)
-        set_current_joke if @cur_joke.nil?
+      if parsed[:data]["content"]["text"].include? 'joke'
+        set_current_joke
         tell_joke
       end
-      #do stuff here
+    elsif parsed[:type] == 'MSG_QUERY_SUCCESS'
+      tell_joke
     elsif parsed[:type] == 'APP_DEPENDENCY'
       #do other stuff here
     end
@@ -42,18 +43,23 @@ class Jokes < Mycroft::Client
   end
 
   def set_current_joke
-    if (@cur_joke == nil)
+    if @cur_joke.empty?
       c_joke = @jokes.pop
       @jokes_used.push(c_joke)
+      # call the method named the type of joke that c_joke is (meta-programming, ahhhh yeah)
       @cur_joke = send(c_joke['type'].to_sym, c_joke['joke'])
+    end
+    if @jokes.empty?
+      @jokes = @jokes_used
+      @jokes.shuffle!
+      @jokes_used = []
     end
   end
 
   def tell_joke
-    action_block = @cur_joke.shift
-    send(action_block[0].to_sym, action_block[1])
-    if (@cur_joke.empty?)
-      @cur_joke = nil
+    unless @cur_joke.empty?
+      action_block = @cur_joke.shift
+      send(action_block[0].to_sym, action_block[1])
     end
   end
 end
