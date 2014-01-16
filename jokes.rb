@@ -27,11 +27,10 @@ class Jokes < Mycroft::Client
       check_manifest(parsed)
       @verified = true
     elsif parsed[:type] == 'MSG_BROADCAST'
-      if (parsed[:data]["content"]["text"].index("joke") != nil)
-        set_current_joke if @cur_joke.nil?
+      unless parsed[:data]["content"]["text"].index("joke").nil?
+        set_current_joke
         tell_joke
       end
-      #do stuff here
     elsif parsed[:type] == 'APP_DEPENDENCY'
       #do other stuff here
     end
@@ -42,7 +41,7 @@ class Jokes < Mycroft::Client
   end
 
   def set_current_joke
-    if (@cur_joke == nil)
+    if @cur_joke.nil?
       c_joke = @jokes.pop
       @jokes_used.push(c_joke)
       @cur_joke = send(c_joke['type'].to_sym, c_joke['joke'])
@@ -52,7 +51,7 @@ class Jokes < Mycroft::Client
   def tell_joke
     action_block = @cur_joke.shift
     send(action_block[0].to_sym, action_block[1])
-    if (@cur_joke.empty?)
+    if @cur_joke.empty?
       @cur_joke = nil
     end
   end
