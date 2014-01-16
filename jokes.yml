@@ -35,6 +35,13 @@
   joke:
     set_up: To
     punchline: To whom
+-
+  type: knock_knock
+  name: interrupting cow
+  joke:
+    set_up: Interrupting Cow
+    punchline: Moo
+    punchline_delay: .5
 
 # One liners
 -
@@ -160,3 +167,24 @@
     set_up: Knock Knock
     punchline: java
     delay: 6
+
+# Special
+-
+  type: special
+  name:
+  joke:
+    -
+      - tts
+      - Why did sally fall off the swing?
+    -
+      - delay
+      - 2
+    -
+      - tts
+      - Because she had no arms. Knock Knock.
+    -
+      - delay
+      - 2
+    -
+      - tts
+      - Not Sally
