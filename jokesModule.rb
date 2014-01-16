@@ -10,7 +10,7 @@ module JokeModule
   end
 
   def normal(joke)
-    [[:tts, joke["set_up"]], [:delay, 2], [:tts, joke["punchline"]]]
+    [[:tts, joke["set_up"]], [:delay, joke["delay"] or 2], [:tts, joke["punchline"]]]
   end
 
 end
