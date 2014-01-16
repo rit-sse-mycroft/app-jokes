@@ -12,6 +12,7 @@ class Jokes < Mycroft::Client
     @verified = false
     @jokes = YAML.load_file('./jokes.yml').shuffle
     @jokes_used = Array.new
+    @cur_joke = nil
   end
 
   def connect
@@ -24,6 +25,12 @@ class Jokes < Mycroft::Client
       check_manifest(parsed)
       @verified = true
     elsif parsed[:type] == 'MSG_BROADCAST'
+      if (parsed[:data]["content"]["text"].index("joke") != nil)
+        if (@cur_joke == nil)
+          @cur_joke = @jokes.pop
+          @jokes_used.push(@cur_joke)
+        end
+      end
       #do stuff here
     elsif parsed[:type] == 'APP_DEPENDENCY'
       #do other stuff here
