@@ -147,3 +147,9 @@
   joke:
     set_up: What kind of music do chiropractors listen to?
     punchline: Hip-pop.
+-
+  type: normal
+  name: java2
+  joke:
+    set_up: Want to here a joke?
+    punchline: java
