@@ -24,6 +24,7 @@ module JokeModule
 
   def delay(amount)
     sleep(amount)
+    tell_joke
   end
 
 end
