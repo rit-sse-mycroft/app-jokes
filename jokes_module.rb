@@ -1,4 +1,3 @@
-require 'json'
 module JokeModule
 
   def knock_knock(joke)
