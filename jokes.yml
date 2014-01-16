@@ -125,7 +125,7 @@
     punchline: Because he was a little shellfish.
 -
   type: normal
-  name: java
+  name: java csharp
   joke:
     set_up: Why do java programmers wear glasses?
     punchline: Because they can't C sharp
@@ -149,7 +149,14 @@
     punchline: Hip-pop.
 -
   type: normal
-  name: java2
+  name: java
   joke:
     set_up: Want to here a joke?
     punchline: java
+-
+  type: normal
+  name: java2
+  joke:
+    set_up: Knock Knock
+    punchline: java
+    delay: 6
