@@ -1,4 +1,4 @@
-module JokeModule 
+module JokeModule
   extend self
 
   def knock_knock(joke)

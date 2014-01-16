@@ -1,14 +1,17 @@
 require 'mycroft'
+require 'yaml'
 
 class Jokes < Mycroft::Client
 
   attr_accessor :verified
 
   def initialize
-    @key = '/path/to/key'
-    @cert = '/path/to/cert'
+    @key = ''
+    @cert = ''
     @manifest = './app.json'
     @verified = false
+    @jokes = YAML.load_file('./jokes.yml').shuffle
+    @jokes_used = Array.new
   end
 
   def connect
@@ -16,7 +19,11 @@ class Jokes < Mycroft::Client
   end
 
   def on_data(data)
-    # Your code here
+    parsed = parse_message(data)
+    if parsed[:type] == 'APP_MANIFEST_OK' || parsed[:type] == 'APP_MANIFEST_FAIL'
+      check_manifest(parsed)
+      @verified = true
+    end
   end
 
   def on_end
