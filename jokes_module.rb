@@ -17,8 +17,8 @@ module JokeModule
   end
 
   def tts(text)
-    content = {text: text, speakers: "speakers"}
-    query('tts', 'say', content,['text2speech'])
+    content = {text: text, targetSpeaker: "speakers"}
+    query('tts', 'stream', content,['text2speech'])
   end
 
   def delay(amount)
