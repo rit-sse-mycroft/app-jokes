@@ -1,5 +1,4 @@
 module JokeModule
-  extend self
 
   def knock_knock(joke)
     [['tts', "Knock Knock"], ['delay', joke["setup_delay"] || 2], ['tts', joke["set_up"]], ['delay', joke["punchline_delay"] || 2], ['tts', joke["punchline"]]]
@@ -15,6 +14,15 @@ module JokeModule
 
   def special(joke)
     joke
+  end
+
+  def tts(text)
+    query('tts', 'say',
+     '{"text": #{text}", "targetSpeaker": "speakers"}','text2speech')
+  end
+
+  def delay(amount)
+    sleep(amount)
   end
 
 end

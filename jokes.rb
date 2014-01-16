@@ -3,7 +3,7 @@ require 'mycroft'
 require 'yaml'
 
 class Jokes < Mycroft::Client
-
+  include JokeModule
   attr_accessor :verified
 
   def initialize
@@ -43,7 +43,7 @@ class Jokes < Mycroft::Client
     if (@cur_joke == nil)
       c_joke = @jokes.pop
       @jokes_used.push(c_joke)
-      @cur_joke = JokeModule.send(c_joke['type'].to_sym, c_joke['joke'])
+      @cur_joke = send(c_joke['type'].to_sym, c_joke['joke'])
     end
   end
 
