@@ -1,3 +1,4 @@
+require 'jokes_module'
 require 'mycroft'
 require 'yaml'
 
@@ -26,10 +27,6 @@ class Jokes < Mycroft::Client
       @verified = true
     elsif parsed[:type] == 'MSG_BROADCAST'
       if (parsed[:data]["content"]["text"].index("joke") != nil)
-        if (@cur_joke == nil)
-          @cur_joke = @jokes.pop
-          @jokes_used.push(@cur_joke)
-        end
       end
       #do stuff here
     elsif parsed[:type] == 'APP_DEPENDENCY'
@@ -39,6 +36,18 @@ class Jokes < Mycroft::Client
 
   def on_end
     # Your code here
+  end
+
+  def set_current_joke
+    if (@cur_joke == nil)
+      c_joke = @jokes.pop
+      @jokes_used.push(c_joke)
+      @cur_joke = JokeModule.send(c_joke['type'].to_sym, c_joke['joke'])
+    end
+  end
+
+  def tell_joke
+
   end
 end
 
