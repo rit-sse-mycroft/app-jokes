@@ -23,6 +23,10 @@ class Jokes < Mycroft::Client
     if parsed[:type] == 'APP_MANIFEST_OK' || parsed[:type] == 'APP_MANIFEST_FAIL'
       check_manifest(parsed)
       @verified = true
+    elsif parsed[:type] == 'MSG_BROADCAST'
+      #do stuff here
+    elsif parsed[:type] == 'APP_DEPENDENCY'
+      #do other stuff here
     end
   end
 
