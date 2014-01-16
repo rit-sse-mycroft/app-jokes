@@ -32,7 +32,7 @@ class Jokes < Mycroft::Client
         tell_joke
       end
     elsif parsed[:type] == 'MSG_QUERY_SUCCESS'
-        tell_joke
+      tell_joke
     elsif parsed[:type] == 'APP_DEPENDENCY'
       #do other stuff here
     end
