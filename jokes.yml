@@ -1,13 +1,56 @@
+# Knock Knock Jokes
 -
   type: knock_knock
   name: cashew
   joke:
-    set_up: cash
+    set_up: Cash
     punchline: No thanks, but I would like a peanut instead
 -
-  type: one_liner,
-  name: shitzu,
+  type: knock_knock
+  name: doris
+  joke:
+    set_up: Doris
+    punchline: Doris locked, that's why I'm knocking!
+-
+  type: knock_knock
+  name: isabel
+  joke:
+    set_up: Isabel
+    punchline: Isabel working? I had to knock.
+-
+  type: knock_knock
+  name: yahoo
+  joke:
+    set_up: Yah
+    punchline: Naah, bro, I prefer google.
+-
+  type: knock_knock
+  name: boohoo
+  joke:
+    set_up: Boo
+    punchline: You don't have to cry about it.
+-
+  type: knock_knock
+  name: whom
+  joke:
+    set_up: To
+    punchline: To whom
+
+# One liners
+-
+  type: one_liner
+  name: shitzu
   joke: I went to the zoo the other day, there was only one dog in it, it was a shitzu.
+-
+  type: one_liner
+  name: knock knock
+  joke: The guy who created knock knock jokes deserves a "No Bell" prize.
+-
+  type: one_liner
+  name: police
+  joke: Police arrested two kids yesterday, one was drinking battery acid, the other was eating fireworks. They charged one and let the other one off.
+
+# Normal Jokes
 -
   type: normal
   name: door
@@ -20,3 +63,63 @@
   joke:
     set_up: What do you get if you divide the circumference of a pumpkin by its diameter?
     punchline: Pumpkin Pi
+-
+  type: normal
+  name: shower
+  joke:
+    set_up: Why did the man dump ground beef on his head?
+    punchline: He wanted a meatier shower!
+-
+  type: normal
+  name: frisbee
+  joke:
+    set_up: What do you call a bee who is having a bad hair day?
+    punchline: A Frisbee
+-
+  type: normal
+  name: hat
+  joke:
+    set_up: What did one hat say to another?
+    punchline: You stay here. I'll go on a head.
+-
+  type: normal
+  name: traffic light
+  joke:
+    set_up: What did the traffic light say to the car?
+    punchline: Don't look. I'm changing.
+-
+  type: normal
+  name: dinosaur
+  joke:
+    set_up: What do you call it when a dinosaur crashes his car?
+    punchline: Tyrannosaurus Wrecks
+-
+  type: normal
+  name: clouds
+  joke:
+    set_up: What do clouds wear under their shorts?
+    punchline: Thunderpants
+-
+  type: normal
+  name: cookie
+  joke:
+    set_up: Why did the cookie go to the hospital?
+    punchline: Because he felt crummy
+-
+  type: normal
+  name: fish
+  joke:
+    set_up: What did the fish say when he ran into the wall?
+    punchline: Dam.
+-
+  type: normal
+  name: elephants
+  joke:
+    set_up: Why did the elephants get kicked out of the public pool?
+    punchline: They kept dropping their trunks.
+-
+  type: normal
+  name: shrimp
+  joke:
+    set_up: Why wouldn't the shrimp share his treasure?
+    punchline: Because he was a little shellfish.
