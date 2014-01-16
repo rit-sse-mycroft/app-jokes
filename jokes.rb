@@ -27,7 +27,7 @@ class Jokes < Mycroft::Client
       check_manifest(parsed)
       @verified = true
     elsif parsed[:type] == 'MSG_BROADCAST'
-      unless parsed[:data]["content"]["text"].index("joke").nil?
+      if parsed[:data]["content"]["text"].include? 'joke'
         set_current_joke
         tell_joke
       end
