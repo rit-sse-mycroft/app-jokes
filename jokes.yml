@@ -123,3 +123,27 @@
   joke:
     set_up: Why wouldn't the shrimp share his treasure?
     punchline: Because he was a little shellfish.
+-
+  type: normal
+  name: java
+  joke:
+    set_up: Why do java programmers wear glasses?
+    punchline: Because they can't C sharp
+-
+  type: normal
+  name: horse
+  joke:
+    set_up: What kind of horse go out after dusk?
+    punchline: Nightmares
+-
+  type: normal
+  name: cheetahs
+  joke:
+    set_up: Why is there no gambling in Africa?
+    punchline: Too many cheetahs!
+-
+  type: normal
+  name: chiropractors
+  joke:
+    set_up: What kind of music do chiropractors listen to?
+    punchline: Hip-pop.
