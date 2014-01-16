@@ -1,4 +1,4 @@
-require 'jokes_module'
+require './jokes_module'
 require 'mycroft'
 require 'yaml'
 
@@ -21,6 +21,7 @@ class Jokes < Mycroft::Client
   end
 
   def on_data(data)
+    puts data
     parsed = parse_message(data)
     if parsed[:type] == 'APP_MANIFEST_OK' || parsed[:type] == 'APP_MANIFEST_FAIL'
       check_manifest(parsed)
@@ -28,6 +29,7 @@ class Jokes < Mycroft::Client
     elsif parsed[:type] == 'MSG_BROADCAST'
       if (parsed[:data]["content"]["text"].index("joke") != nil)
         set_current_joke
+        tell_joke
       end
       #do stuff here
     elsif parsed[:type] == 'APP_DEPENDENCY'
@@ -51,7 +53,9 @@ class Jokes < Mycroft::Client
     until(@cur_joke.empty?)
       action_block = @cur_joke.shift
       send(action_block[0].to_sym, action_block[1])
+      puts @cur_joke.empty?
     end
+    @cur_joke = nil
   end
 end
 

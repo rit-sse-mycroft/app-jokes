@@ -1,3 +1,4 @@
+require 'json'
 module JokeModule
 
   def knock_knock(joke)
@@ -17,8 +18,8 @@ module JokeModule
   end
 
   def tts(text)
-    query('tts', 'say',
-     '{"text": #{text}", "targetSpeaker": "speakers"}','text2speech')
+    content = {text: text, speakers: "speakers"}
+    query('tts', 'say', content,['text2speech'])
   end
 
   def delay(amount)
