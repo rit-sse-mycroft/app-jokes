@@ -4,12 +4,12 @@
   "displayName": "The Joker",
   "instanceId": "",
   "capabilities": {
-    "jokes": "0.1"
+    "jokes": "0.0.1"
   },
   "API": "0",
   "description": "Tells jokes.",
   "dependencies": {
-    "tts": "0.1",
-    "logger": "1.0"
+    "tts": "0.0.1",
+    "logger": "1.0.0"
   }
 }
