@@ -9,6 +9,7 @@
   "API": "0",
   "description": "Tells jokes.",
   "dependencies": {
+    "stt": "0.0.1",
     "tts": "0.0.1",
     "logger": "1.0.0"
   }
