@@ -26,6 +26,9 @@ class Jokes < Mycroft::Client
     if parsed[:type] == 'APP_MANIFEST_OK' || parsed[:type] == 'APP_MANIFEST_FAIL'
       check_manifest(parsed)
       @verified = true
+      puts File.read('./grammar.xml')
+      data = {grammar: { name: 'joke', xml: File.read('./grammar.xml')}}
+      query('stt', 'load_grammar', data)
     elsif parsed[:type] == 'MSG_BROADCAST'
       if parsed[:data]["content"]["text"].include? 'joke'
         set_current_joke
