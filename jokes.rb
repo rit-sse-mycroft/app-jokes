@@ -14,6 +14,8 @@ class Jokes < Mycroft::Client
     @jokes = YAML.load_file('./jokes.yml').shuffle
     @jokes_used = Array.new
     @cur_joke = []
+    @dependencies = {}
+    @state = "APP_DOWN"
   end
 
   def connect
@@ -37,7 +39,12 @@ class Jokes < Mycroft::Client
     elsif parsed[:type] == 'MSG_QUERY_SUCCESS'
       tell_joke
     elsif parsed[:type] == 'APP_DEPENDENCY'
-      #do other stuff here
+      # Dependencies: Speech to Text, Text to Speech
+      # Look for Speech to Text
+      update_dependencies(parsed[:data])
+      puts "Current status of dependencies"
+      puts @dependencies
+
     end
   end
 
@@ -65,6 +72,22 @@ class Jokes < Mycroft::Client
       send(action_block[0].to_sym, action_block[1])
     end
   end
+
+  def update_dependencies(deps)
+
+    deps.each do |capability, instance|
+      instance.each do |appId, status|
+        if @dependencies.has_key?(capability)
+          @dependencies[capability][appId] = status
+        else
+          @dependencies[capability] = {}
+          @dependencies[capability][appId] = status
+        end
+      end
+    end    
+  end
+
 end
+
 
 Mycroft.start(Jokes)
