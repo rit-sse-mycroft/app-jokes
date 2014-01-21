@@ -6,7 +6,7 @@ class Jokes < Mycroft::Client
   include JokeModule
   attr_accessor :verified
 
-  def initialize
+  def initialize(host, port)
     @key = ''
     @cert = ''
     @manifest = './app.json'
@@ -14,6 +14,7 @@ class Jokes < Mycroft::Client
     @jokes = YAML.load_file('./jokes.yml').shuffle
     @jokes_used = Array.new
     @cur_joke = []
+    super
   end
 
   def connect
