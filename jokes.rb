@@ -41,7 +41,7 @@ class Jokes < Mycroft::Client
   end
 
   def on_end
-    # Your code here
+    broadcast({unloadGrammar: 'joke'})
   end
 
   def set_current_joke

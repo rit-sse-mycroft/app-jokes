@@ -2,7 +2,7 @@
   "version": "0.0.1",
   "name": "jokes",
   "displayName": "The Joker",
-  "instanceId": "",
+  "instanceId": "jokes1",
   "capabilities": {
     "jokes": "0.0.1"
   },
