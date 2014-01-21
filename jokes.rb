@@ -21,12 +21,9 @@ class Jokes < Mycroft::Client
     # Your code here
   end
 
-  def on_data(data)
-    puts data
-    parsed = parse_message(data)
+  def on_data(parsed)
     if parsed[:type] == 'APP_MANIFEST_OK' || parsed[:type] == 'APP_MANIFEST_FAIL'
-      check_manifest(parsed)
-      @verified = true
+      
     elsif parsed[:type] == 'MSG_BROADCAST'
       if parsed[:data]["content"]["text"].include? 'joke'
         set_current_joke
@@ -36,6 +33,10 @@ class Jokes < Mycroft::Client
       tell_joke
     elsif parsed[:type] == 'APP_DEPENDENCY'
       #do other stuff here
+      if parsed[:data]['stt']['primary'] == 'up'
+        data = {grammar: { name: 'joke', xml: File.read('./grammar.xml')}}
+        query('stt', 'load_grammar', data)
+      end
     end
   end
 
