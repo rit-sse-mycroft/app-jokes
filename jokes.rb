@@ -14,6 +14,7 @@ class Jokes < Mycroft::Client
     @jokes = YAML.load_file('./jokes.yml').shuffle
     @jokes_used = Array.new
     @cur_joke = []
+    @sent_grammar = false
     super
   end
 
@@ -22,9 +23,7 @@ class Jokes < Mycroft::Client
   end
 
   def on_data(parsed)
-    if parsed[:type] == 'APP_MANIFEST_OK' || parsed[:type] == 'APP_MANIFEST_FAIL'
-      
-    elsif parsed[:type] == 'MSG_BROADCAST'
+    if parsed[:type] == 'MSG_BROADCAST'
       if parsed[:data]["content"]["text"].include? 'joke'
         set_current_joke
         tell_joke
@@ -33,9 +32,14 @@ class Jokes < Mycroft::Client
       tell_joke
     elsif parsed[:type] == 'APP_DEPENDENCY'
       #do other stuff here
-      if parsed[:data]['stt']['primary'] == 'up'
+      if parsed[:data]['stt']['stt1'] == 'up' and not @sent_grammar
+        up
         data = {grammar: { name: 'joke', xml: File.read('./grammar.xml')}}
         query('stt', 'load_grammar', data)
+        @sent_grammar = true
+      elsif parsed[:data]['stt']['stt1'] == 'down' and @sent_grammar
+        @sent_grammar = false
+        down
       end
     end
   end
