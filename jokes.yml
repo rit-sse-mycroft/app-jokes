@@ -170,6 +170,13 @@
     set_up: Knock Knock
     punchline: java
     delay: 6
+- 
+  type: normal
+  name: fish
+  joke:
+    set_up: How do you stop a fish from smelling?
+    punchline: Cut off its nose!
+-
 
 # Special
 -
