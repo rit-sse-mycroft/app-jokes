@@ -56,7 +56,10 @@
   type: one_liner
   name: police
   joke: Police arrested two kids yesterday, one was drinking battery acid, the other was eating fireworks. They charged one and let the other one off.
-
+-
+  type: one_liner
+  name: cereal
+  joke: Did you hear that Tony the Tiger was murdered? They think it was a serial killer.
 # Normal Jokes
 -
   type: normal
@@ -187,4 +190,10 @@
       - 2
     -
       - tts
-      - Not Sally
+      - Not Sally. What did Sally get for Christmas?
+    -
+      -delay
+      -2
+    -
+      - tts
+      - Finger puppets.
