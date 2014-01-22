@@ -13,7 +13,8 @@ class Jokes < Mycroft::Client
     @verified = false
     @jokes = YAML.load_file('./jokes.yml').shuffle
     @jokes_used = Array.new
-    @cur_joke = []
+    @dependencies = {}
+    @state = "APP_DOWN"
     @sent_grammar = false
     super
   end
@@ -25,21 +26,22 @@ class Jokes < Mycroft::Client
   def on_data(parsed)
     if parsed[:type] == 'MSG_BROADCAST'
       if parsed[:data]["content"]["text"].include? 'joke'
-        set_current_joke
         tell_joke
       end
-    elsif parsed[:type] == 'MSG_QUERY_SUCCESS'
-      tell_joke
     elsif parsed[:type] == 'APP_DEPENDENCY'
-      #do other stuff here
-      if parsed[:data]['stt']['stt1'] == 'up' and not @sent_grammar
-        up
-        data = {grammar: { name: 'joke', xml: File.read('./grammar.xml')}}
-        query('stt', 'load_grammar', data)
-        @sent_grammar = true
-      elsif parsed[:data]['stt']['stt1'] == 'down' and @sent_grammar
-        @sent_grammar = false
-        down
+      update_dependencies(parsed[:data])
+      puts "Current status of dependencies"
+      puts @dependencies
+      if not parsed[:data]['stt'].nil?
+        if parsed[:data]['stt']['stt1'] == 'up' and not @sent_grammar
+          up
+          data = {grammar: { name: 'joke', xml: File.read('./grammar.xml')}}
+          query('stt', 'load_grammar', data)
+          @sent_grammar = true
+        elsif parsed[:data]['stt']['stt1'] == 'down' and @sent_grammar
+          @sent_grammar = false
+          down
+        end
       end
     end
   end
@@ -48,26 +50,31 @@ class Jokes < Mycroft::Client
     broadcast({unloadGrammar: 'joke'})
   end
 
-  def set_current_joke
-    if @cur_joke.empty?
-      c_joke = @jokes.pop
-      @jokes_used.push(c_joke)
-      # call the method named the type of joke that c_joke is (meta-programming, ahhhh yeah)
-      @cur_joke = send(c_joke['type'].to_sym, c_joke['joke'])
-    end
+  def tell_joke
     if @jokes.empty?
-      @jokes = @jokes_used
-      @jokes.shuffle!
-      @jokes_used = []
+      @jokes = @jokes_used.shuffle
+      @jokes_used = Array.new
     end
+    joke = @jokes.pop
+    @jokes_used << joke
+    cur_joke = send(joke['type'].to_sym, joke['joke'])
+    tts(cur_joke)
   end
 
-  def tell_joke
-    unless @cur_joke.empty?
-      action_block = @cur_joke.shift
-      send(action_block[0].to_sym, action_block[1])
-    end
+  def update_dependencies(deps)
+    deps.each do |capability, instance|
+      instance.each do |appId, status|
+        if @dependencies.has_key?(capability)
+          @dependencies[capability][appId] = status
+        else
+          @dependencies[capability] = {}
+          @dependencies[capability][appId] = status
+        end
+      end
+    end    
   end
+
 end
+
 
 Mycroft.start(Jokes)
