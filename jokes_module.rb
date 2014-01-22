@@ -1,15 +1,37 @@
 module JokeModule
+  DEFAULT_DELAY = 1
 
   def knock_knock(joke)
-    [['tts', "Knock Knock"], ['delay', joke["setup_delay"] || 2], ['tts', joke["set_up"]], ['delay', joke["punchline_delay"] || 2], ['tts', joke["punchline"]]]
+    [{
+      phrase: 'Knock Knock',
+      delay: joke['setup_delay'] || DEFAULT_DELAY
+    },
+    {
+      phrase: joke['set_up'],
+      delay: joke['punchline_delay'] || DEFAULT_DELAY
+    },
+    {
+      phrase: joke['punchline'],
+      delay: 0
+    }]
   end
 
   def one_liner(joke)
-    [['tts', joke]]
+    [{
+      phrase: joke,
+      delay: 0
+    }]
   end
 
   def normal(joke)
-    [['tts', joke["set_up"]], ['delay', joke["delay"] || 2], ['tts', joke["punchline"]]]
+    [{
+      phrase: joke["set_up"],
+      delay: joke['delay'] || DEFAULT_DELAY
+    },
+    {
+      phrase: joke['punchline'],
+      delay: 0
+    }]
   end
 
   def special(joke)
@@ -19,11 +41,6 @@ module JokeModule
   def tts(text)
     content = {text: text, targetSpeaker: "speakers"}
     query('tts', 'stream', content,['text2speech'])
-  end
-
-  def delay(amount)
-    sleep(amount)
-    tell_joke
   end
 
 end
