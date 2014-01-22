@@ -6,7 +6,7 @@ class Jokes < Mycroft::Client
   include JokeModule
   attr_accessor :verified
 
-  def initialize
+  def initialize(host, port)
     @key = ''
     @cert = ''
     @manifest = './app.json'
@@ -16,6 +16,8 @@ class Jokes < Mycroft::Client
     @cur_joke = []
     @dependencies = {}
     @state = "APP_DOWN"
+    @sent_grammar = false
+    super
   end
 
   def connect
@@ -23,9 +25,7 @@ class Jokes < Mycroft::Client
   end
 
   def on_data(parsed)
-    if parsed[:type] == 'APP_MANIFEST_OK' || parsed[:type] == 'APP_MANIFEST_FAIL'
-      
-    elsif parsed[:type] == 'MSG_BROADCAST'
+    if parsed[:type] == 'MSG_BROADCAST'
       if parsed[:data]["content"]["text"].include? 'joke'
         set_current_joke
         tell_joke
@@ -37,15 +37,20 @@ class Jokes < Mycroft::Client
       puts "Current status of dependencies"
       puts @dependencies
       #do other stuff here
-      if parsed[:data]['stt']['primary'] == 'up'
+      if parsed[:data]['stt']['stt1'] == 'up' and not @sent_grammar
+        up
         data = {grammar: { name: 'joke', xml: File.read('./grammar.xml')}}
         query('stt', 'load_grammar', data)
+        @sent_grammar = true
+      elsif parsed[:data]['stt']['stt1'] == 'down' and @sent_grammar
+        @sent_grammar = false
+        down
       end
     end
   end
 
   def on_end
-    # Your code here
+    broadcast({unloadGrammar: 'joke'})
   end
 
   def set_current_joke

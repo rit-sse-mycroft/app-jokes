@@ -2,7 +2,7 @@
   "version": "0.0.1",
   "name": "jokes",
   "displayName": "The Joker",
-  "instanceId": "what-did-the-app-say-to-the-server",
+  "instanceId": "jokes1",
   "capabilities": {
     "jokes": "0.0.1"
   },
