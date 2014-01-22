@@ -43,6 +43,11 @@ class Jokes < Mycroft::Client
           down
         end
       end
+      # Dependencies: Speech to Text, Text to Speech
+      # Look for Speech
+      update_dependencies(parsed[:data])
+      puts "Current status of dependencies"
+      puts @dependencies
     end
   end
 
@@ -73,7 +78,6 @@ class Jokes < Mycroft::Client
       end
     end    
   end
-
 end
 
 
