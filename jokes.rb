@@ -48,11 +48,13 @@ class Jokes < Mycroft::Client
       update_dependencies(parsed[:data])
       puts "Current status of dependencies"
       puts @dependencies
+    elsif parsed[:type] == 'MSG_GENERAL_FAILURE'
+      puts parsed[:data]['message']
     end
   end
 
   def on_end
-    broadcast({unloadGrammar: 'joke'})
+    query('stt', 'unload_grammar', {grammar: 'joke'})
   end
 
   def tell_joke

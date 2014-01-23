@@ -40,7 +40,7 @@ module JokeModule
 
   def tts(text)
     content = {text: text, targetSpeaker: "speakers"}
-    query('tts', 'stream', content,['text2speech'])
+    query('tts', 'stream', content)
   end
 
 end
