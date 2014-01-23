@@ -1,5 +1,5 @@
 module JokeModule
-  DEFAULT_DELAY = 1
+  DEFAULT_DELAY = 2
 
   def knock_knock(joke)
     [{
