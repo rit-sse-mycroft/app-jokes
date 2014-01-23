@@ -16,13 +16,13 @@
   name: isabel
   joke:
     set_up: Isabel
-    punchline: Isabel working? I had to knock
+    punchline: Isabel working, I had to knock
 -
   type: knock_knock
   name: yahoo
   joke:
     set_up: Yah
-    punchline: Naah, bro, I prefer google
+    punchline: Naah, I prefer google
 -
   type: knock_knock
   name: boohoo
@@ -47,7 +47,7 @@
 -
   type: one_liner
   name: shitzu
-  joke: I went to the zoo the other day, there was only one dog in it, it was a shitzu
+  joke: I went to the zoo the other day, there was only one dog in it. it was a shitzu
 -
   type: one_liner
   name: knock knock
@@ -90,13 +90,13 @@
   name: hat
   joke:
     set_up: What did one hat say to another
-    punchline: You stay here. I'll go on a head
+    punchline: You stay here, I'll go on a head
 -
   type: normal
   name: traffic light
   joke:
     set_up: What did the traffic light say to the car
-    punchline: Don't look. I'm changing
+    punchline: Don't look, I'm changing
 -
   type: normal
   name: dinosaur
@@ -108,7 +108,7 @@
   name: clouds
   joke:
     set_up: What do clouds wear under their shorts
-    punchline: Thunderpants
+    punchline: Thunder pants
 -
   type: normal
   name: cookie
