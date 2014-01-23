@@ -161,7 +161,7 @@
   type: normal
   name: java
   joke:
-    set_up: Want to here a joke?
+    set_up: Want to hear a joke?
     punchline: java
 -
   type: normal
@@ -176,7 +176,7 @@
   joke:
     set_up: How do you stop a fish from smelling?
     punchline: Cut off its nose!
--
+
 
 # Special
 -
