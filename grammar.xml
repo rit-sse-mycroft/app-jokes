@@ -1,1 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><grammar xml:lang="en-US" root="joke" version="1.0" xmlns="http://www.w3.org/2001/06/grammar"><rule id="joke" scope="public"><item>Mycroft tell me a joke</item></rule></grammar>
+<?xml version="1.0"?>
+<grammar xmlns="http://www.w3.org/2001/06/grammar" xml:lang="en-US" root="joke" version="1.0" tag-format="semantics/1.0">
+  <rule id="joke" scope="public">
+    <item>Mycroft tell me a joke</item>
+  </rule>
+</grammar>
