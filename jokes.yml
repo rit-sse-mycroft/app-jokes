@@ -176,8 +176,72 @@
   joke:
     set_up: How do you stop a fish from smelling
     punchline: Cut off its nose
-
-
+-
+  type: normal
+  name: website
+  joke:
+    set_up: What did the spider do on the computer
+    punchline: Made a website
+-
+  type: normal
+  name: lunchtime
+  joke:
+    set_up: What did the computer do at lunchtime
+    punchline: Had a byte
+-
+  type: normal
+  name: computer father
+  joke:
+    set_up: What does a baby computer call his father
+    punchline: Data
+-
+  type: normal
+  name: computer sneeze
+  joke:
+    set_up: Why did the computer keep sneezing
+    punchline: It had a virus
+-
+  type: normal
+  name: virus
+  joke:
+    set_up: What is a computer virus
+    punchline: A terminal illness
+-
+  type: normal
+  name: windows open
+  joke:
+    set_up: Why was the computer cold
+    punchline: It left it's Windows open
+-
+  type: normal
+  name: computer bug
+  joke:
+    set_up: Why was there a bug in the computer
+    punchline: Because it was looking for a byte to eat
+-
+  type: normal
+  name: squeak
+  joke:
+    set_up: Why did the computer squeak
+    punchline: Because someone stepped on it's mouse
+-
+  type: normal
+  name: lifeguard
+  joke:
+    set_up: What do you get when you cross a computer and a life guard
+    punchline: A screensaver
+-
+  type: normal
+  name: mice
+  joke:
+    set_up: Where do all the cool mice live
+    punchline: In their mousepads
+-
+  type: normal
+  name: elephant
+  joke:
+    set_up: What do you get when you cross a computer with an elephant
+    punchline: Lots of memory
 # Special
 -
   type: special
