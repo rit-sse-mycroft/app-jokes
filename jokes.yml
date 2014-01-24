@@ -42,7 +42,12 @@
     set_up: Interrupting Cow
     punchline: Moo
     punchline_delay: .5
-
+-
+  type: knock_knock
+  name: lettuce
+  joke:
+    set_up: Lettuce
+    punchline: Lettuce in and you'll find out
 # One liners
 -
   type: one_liner
@@ -242,6 +247,18 @@
   joke:
     set_up: What do you get when you cross a computer with an elephant
     punchline: Lots of memory
+-
+  type: normal
+  name: elephant
+  joke:
+    set_up: What do you call a boomerang that doesn't come back?
+    punchline: A stick
+-
+  type: normal
+  name: apple
+  joke:
+    set_up: What sits in a tree and shouts I'm a pearl
+    punchline: A Crazy apple
 # Special
 -
   type: special
