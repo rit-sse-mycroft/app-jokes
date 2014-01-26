@@ -64,15 +64,6 @@ class Jokes < Mycroft::Client
     cur_joke = send(joke['type'].to_sym, joke['joke'])
     tts(cur_joke)
   end
-
-  def update_dependencies(deps)
-    deps.each do |capability, instance|
-      @dependencies[capability] ||= {}
-      instance.each do |appId, status|
-        @dependencies[capability][appId] = status
-      end
-    end
-  end
 end
 
 
