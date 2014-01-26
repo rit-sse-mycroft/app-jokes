@@ -29,25 +29,22 @@ class Jokes < Mycroft::Client
         tell_joke
       end
     elsif parsed[:type] == 'APP_DEPENDENCY'
-      update_dependencies(parsed[:data])
-      puts "Current status of dependencies"
-      puts @dependencies
-      if not parsed[:data]['stt'].nil?
-        if parsed[:data]['stt']['stt1'] == 'up' and not @sent_grammar
-          up
-          data = {grammar: { name: 'joke', xml: File.read('./grammar.xml')}}
-          query('stt', 'load_grammar', data)
-          @sent_grammar = true
-        elsif parsed[:data]['stt']['stt1'] == 'down' and @sent_grammar
-          @sent_grammar = false
-          down
-        end
-      end
       # Dependencies: Speech to Text, Text to Speech
       # Look for Speech
       update_dependencies(parsed[:data])
       puts "Current status of dependencies"
       puts @dependencies
+      if not @dependencies['stt'].nil?
+        if @dependencies['stt']['stt1'] == 'up' and not @sent_grammar
+          up
+          data = {grammar: { name: 'joke', xml: File.read('./grammar.xml')}}
+          query('stt', 'load_grammar', data)
+          @sent_grammar = true
+        elsif @dependencies['stt']['stt1'] == 'down' and @sent_grammar
+          @sent_grammar = false
+          down
+        end
+      end
     elsif parsed[:type] == 'MSG_GENERAL_FAILURE'
       puts parsed[:data]['message']
     end
@@ -70,15 +67,11 @@ class Jokes < Mycroft::Client
 
   def update_dependencies(deps)
     deps.each do |capability, instance|
+      @dependencies[capability] ||= {}
       instance.each do |appId, status|
-        if @dependencies.has_key?(capability)
-          @dependencies[capability][appId] = status
-        else
-          @dependencies[capability] = {}
-          @dependencies[capability][appId] = status
-        end
+        @dependencies[capability][appId] = status
       end
-    end    
+    end
   end
 end
 
