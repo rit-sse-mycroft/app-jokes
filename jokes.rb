@@ -2,10 +2,12 @@ require './jokes_module'
 require 'mycroft'
 require 'yaml'
 
+# The jokes client
 class Jokes < Mycroft::Client
   include JokeModule
   attr_accessor :verified
 
+  # Constructor for Jokes
   def initialize(host, port)
     @key = ''
     @cert = ''
@@ -18,6 +20,7 @@ class Jokes < Mycroft::Client
     super
   end
 
+  # Handler for APP_DEPENDENCY
   on 'APP_DEPENDENCY' do |data|
     update_dependencies(data)
     puts "Current status of dependencies"
@@ -35,16 +38,19 @@ class Jokes < Mycroft::Client
     end
   end
 
+  # Handler for MSG_BROADCAST
   on 'MSG_BROADCAST' do |data|
     if data["content"]["text"].include? 'joke'
       tell_joke
     end
   end
 
+  # Handler for disconnect
   on 'end' do
     query('stt', 'unload_grammar', {grammar: 'joke'})
   end
 
+  # Tells a joke
   def tell_joke
     if @jokes.empty?
       @jokes = @jokes_used.shuffle
