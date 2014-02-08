@@ -1,6 +1,6 @@
 ﻿require 'srgs'
 
-module WeatherGrammar
+module JokeGrammar
   include Srgs::DSL
 
   extend self
