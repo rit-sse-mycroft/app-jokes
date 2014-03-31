@@ -46,7 +46,7 @@ class Jokes < Mycroft::Client
   end
 
   # Handler for disconnect
-  on 'end' do
+  on 'CONNECTION_CLOSED' do
     query('stt', 'unload_grammar', {grammar: 'joke'})
   end
 
