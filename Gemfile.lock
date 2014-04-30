@@ -14,7 +14,7 @@ GEM
     mini_portile (0.5.2)
     minitest (4.7.5)
     multi_json (1.9.2)
-    mycroft (0.1.0)
+    mycroft (0.1.2)
       activesupport
       colorize
       highline
@@ -36,5 +36,5 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  mycroft
+  mycroft (~> 0.1.2)
   srgs (~> 1.1.1)

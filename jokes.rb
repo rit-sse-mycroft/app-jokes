@@ -63,5 +63,4 @@ class Jokes < Mycroft::Client
   end
 end
 
-
-Mycroft.start(Jokes)
+Mycroft.start(Jokes, ARGV[0], ARGV[1])
